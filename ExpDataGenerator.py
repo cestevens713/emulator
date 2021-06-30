@@ -3,10 +3,7 @@ import numpy as np
 import scipy.stats as stats
 
 def weibull(x, A, B, W, S):
-    g = -1*((x-B/W))**S
-    h = np.exp(g)
-    i = 1-h
-    return (A*i)
+    return (A*(1 - np.exp(-1*((np.log(x) - B)/W)**S)))
 
 vecWeibull = np.vectorize(weibull)
 
@@ -39,7 +36,10 @@ plt.hist(S)
 YExp = vecWeibull(X,A,B,W,S)
 
 plt.figure('Weibull')
+plt.yscale("log")
 plt.scatter(X, YExp, color = 'black', label = 'Experiment')
 plt.plot(X, YExac, color = 'red', label = 'Exact')
 plt.legend()
-
+plt.xlabel("LET (in MeV-cm^2/mg)")
+plt.ylabel("Cross Section (in square-microns/bit)")
+plt.show()
