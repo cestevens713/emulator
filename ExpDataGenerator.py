@@ -7,10 +7,10 @@ def weibull(x, A, B, W, S):
 
 vecWeibull = np.vectorize(weibull)
 
-a = 5*(10**-7)
-b = 0.5
-w = 30
-s = 0.17
+a = 5*(10**-7) #cm^2, limiting/plateau cross section
+b = 0.5        #onset parameter
+w = 30         #width parameter
+s = 0.17       #dimensionless exponent
 
 X = np.arange(0.1,30,.1)
 
